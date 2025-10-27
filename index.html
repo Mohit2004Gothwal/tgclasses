@@ -1,0 +1,446 @@
+<!-- TG Classes - Single-file Custom Website
+     Features:
+     - Responsive static site (Home, Courses, Materials, About, Contact)
+     - Simple client-side admin (password protected) to add courses & upload PDFs (stored in localStorage)
+     - Course cards, PDF downloads, WhatsApp/contact, and export/import database
+     - Ready to deploy (upload this HTML file to any static host: Netlify, GitHub Pages, Vercel)
+
+     How to use:
+     1. Save this file as tg-classes.html and open in browser.
+     2. Click "Admin" and enter password: tgadmin123 (change this in code for production).
+     3. Use the admin panel to add courses and upload PDF study materials. Data persists in browser localStorage.
+     4. Use Export/Import to backup or move data between devices.
+
+     NOTE: This is a static client-side implementation for quick launch. For production, add a server or use Firebase for file storage, authentication, and payments (Razorpay/Stripe) integration.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TG Classes — UGC NET & CUET Prep</title>
+  <meta name="description" content="TG Classes by Tarun Gothwal — UGC NET JRF Commerce coaching, study materials, PDFs and courses." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--blue:#0b74ff;--dark:#0f1724;--muted:#6b7280;--glass:rgba(255,255,255,0.06)}
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; color:#111827; background:linear-gradient(180deg,#f8fafc 0%,#ffffff 100%)}
+    header{background:#fff;border-bottom:1px solid #e6edf6;position:sticky;top:0;z-index:40}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:8px;background:linear-gradient(135deg,var(--blue),#2fb6ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;box-shadow:0 6px 18px rgba(11,116,255,0.18)}
+    nav a{margin:0 8px;color:var(--dark);text-decoration:none;font-weight:600}
+    .cta{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
+    .hero h1{font-size:28px;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .hero .card{background:#fff;padding:18px;border-radius:14px;box-shadow:0 6px 30px rgba(8,63,150,0.06)}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .course{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 24px rgba(12,20,40,0.04)}
+    .course h3{margin:6px 0 8px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f0f7ff;color:var(--blue);font-weight:600;font-size:13px}
+    .muted{color:var(--muted);font-size:14px}
+
+    footer{padding:28px 0;color:var(--muted);} 
+    .columns{display:flex;gap:24px;flex-wrap:wrap}
+
+    /* Pages */
+    .page{display:none;padding:28px 0}
+    .page.active{display:block}
+
+    /* Admin */
+    .admin-panel{background:linear-gradient(180deg,#0b74ff11,#0b74ff08);border:1px dashed #cfe6ff;padding:14px;border-radius:10px}
+    input,textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid #e6edf6;margin-top:8px}
+    button{background:var(--blue);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid #e6edf6;color:var(--dark)}
+    .small{font-size:13px}
+    .flex{display:flex;gap:12px}
+
+    /* responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.nav nav{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">TG</div>
+        <div>
+          <div style="font-weight:700">TG Classes</div>
+          <div style="font-size:12px;color:var(--muted)">UGC NET • CUET • Commerce</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#home" data-link>Home</a>
+        <a href="#courses" data-link>Courses</a>
+        <a href="#materials" data-link>Materials</a>
+        <a href="#about" data-link>About</a>
+        <a href="#contact" data-link>Contact</a>
+        <a href="#admin" class="cta" id="adminBtn">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <h1>TG Classes — Your Path to UGC NET JRF</h1>
+          <p>High-quality courses, concise PDFs, and guided practice for Commerce aspirants. Join batches, download study material, and track progress.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+            <a class="cta" href="#courses">View Courses</a>
+            <a class="btn-ghost" href="#materials">Free PDFs</a>
+            <a class="btn-ghost" href="https://youtube.com/" target="_blank">YouTube Channel</a>
+          </div>
+
+          <div class="columns">
+            <div style="min-width:220px" class="card">
+              <div style="font-size:13px;color:var(--muted)">Upcoming Batch</div>
+              <div style="font-weight:700;margin-top:6px">UGC NET Commerce — Dec 2025</div>
+              <div style="margin-top:8px;color:var(--muted)">Limited seats. Start Date: <strong>Nov 10, 2025</strong></div>
+            </div>
+
+            <div style="min-width:220px" class="card">
+              <div style="font-size:13px;color:var(--muted)">Free Resource</div>
+              <div style="font-weight:700;margin-top:6px">Top 100 MCQs — Paper 1</div>
+              <div style="margin-top:8px;color:var(--muted)">Downloadable PDF and quick revision notes.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div style="text-align:center;padding:10px 6px">
+            <div style="font-size:13px;color:var(--muted)">Featured Course</div>
+            <h3 style="margin:8px 0">Complete UGC NET Commerce — Paper 2</h3>
+            <div class="pill">₹999 (Early Bird)</div>
+            <p class="muted small" style="margin-top:10px">Includes recorded videos, 10 PDFs, and access to the doubt group.</p>
+            <div style="margin-top:14px;display:flex;gap:8px;justify-content:center">
+              <button id="enrollDemo">Enroll (Demo)</button>
+              <a class="btn-ghost" href="#contact">Contact</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <h2 style="margin-top:10px">Popular Courses</h2>
+      <div id="popularCourses" class="grid" style="margin-top:12px"></div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="page">
+      <h2>Courses</h2>
+      <p class="muted">Browse courses — click a course to view details and resources.</p>
+      <div id="coursesGrid" class="grid" style="margin-top:12px"></div>
+    </section>
+
+    <!-- MATERIALS -->
+    <section id="materials" class="page">
+      <h2>Study Materials & PDFs</h2>
+      <p class="muted">Download free and premium PDFs uploaded by TG Classes.</p>
+      <div id="materialsGrid" class="grid" style="margin-top:12px"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <h2>About TG Classes</h2>
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <img src="" alt="Tarun" id="aboutPhoto" style="width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#00b2ff);display:block">
+        <div>
+          <h3>Tarun Gothwal</h3>
+          <p class="muted">UGC NET JRF Commerce aspirant coach, Unacademy educator, focused on making complex commerce topics easy and exam-friendly.</p>
+          <p class="muted small">Services: Live classes, Recorded courses, PDFs, Doubt clearing sessions, Mock tests.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+      <h2>Contact</h2>
+      <p class="muted">Reach out for course enquiries, collaborations or placements.</p>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div style="min-width:280px;padding:16px;border-radius:12px;background:#fff;box-shadow:0 8px 24px rgba(12,20,40,0.04)">
+          <div style="font-weight:700">Contact Form</div>
+          <div class="muted small">Send a direct message and we'll respond on WhatsApp or email.</div>
+          <div style="margin-top:10px">
+            <input id="contactName" placeholder="Your name" />
+            <input id="contactEmail" placeholder="Email" />
+            <textarea id="contactMsg" rows="4" placeholder="Message"></textarea>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button id="sendContact">Send</button>
+              <button class="btn-ghost" id="whatsappBtn">WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="min-width:260px;padding:16px;border-radius:12px;background:#fff;box-shadow:0 8px 24px rgba(12,20,40,0.04)">
+          <div style="font-weight:700">Quick Links</div>
+          <div style="margin-top:8px;color:var(--muted)">
+            Phone: <strong>7206560451</strong><br>
+            Email: <strong>tarun@example.com</strong><br>
+            YouTube: <a href="https://youtube.com/" target="_blank">TG Classes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="admin" class="page">
+      <h2>Admin Panel</h2>
+      <div id="adminArea">
+        <div class="admin-panel">
+          <div id="adminAuth">
+            <div class="small muted">Enter admin password to unlock features.</div>
+            <input id="adminPassword" placeholder="Admin password" />
+            <div style="margin-top:8px;display:flex;gap:8px">
+              <button id="unlockAdmin">Unlock</button>
+              <button class="btn-ghost" id="clearData">Clear All Data</button>
+            </div>
+          </div>
+
+          <div id="adminControls" style="display:none;margin-top:12px">
+            <div style="font-weight:700">Add Course</div>
+            <input id="courseTitle" placeholder="Course title (e.g. UGC NET Commerce)" />
+            <input id="coursePrice" placeholder="Price (e.g. 999)" />
+            <textarea id="courseDesc" placeholder="Short description"></textarea>
+            <input id="courseThumb" placeholder="Thumbnail image URL (optional)" />
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button id="addCourse">Add Course</button>
+              <button class="btn-ghost" id="refreshData">Refresh Preview</button>
+            </div>
+
+            <hr style="margin:12px 0">
+            <div style="font-weight:700">Upload PDF (Study Material)</div>
+            <input type="file" id="pdfFile" accept="application/pdf" />
+            <input id="pdfTitle" placeholder="PDF title (e.g. Paper 1: Top 100 MCQs)" />
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button id="uploadPdf">Upload PDF</button>
+              <button class="btn-ghost" id="clearMaterials">Clear Materials</button>
+            </div>
+
+            <hr style="margin:12px 0">
+            <div style="display:flex;gap:8px">
+              <button id="exportData" class="small">Export Data (JSON)</button>
+              <input id="importFile" type="file" accept="application/json" />
+              <button id="importBtn" class="btn-ghost small">Import</button>
+            </div>
+            <div style="margin-top:8px;color:var(--muted);font-size:13px">Admin actions are local to this browser. To publish, deploy this file to hosting and use a proper backend for file storage and authentication.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div class="muted">© TG Classes — Built with ❤️</div>
+        <div style="display:flex;gap:12px">
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    /*********************
+     * Simple client-side router
+     *********************/
+    const pages = Array.from(document.querySelectorAll('.page'))
+    function showPage(hash){
+      const id = (hash || '#home').replace('#','')
+      pages.forEach(p=>p.classList.toggle('active', p.id===id))
+      // scroll to top
+      window.scrollTo(0,0)
+    }
+    window.addEventListener('hashchange',()=>showPage(location.hash))
+    document.querySelectorAll('[data-link]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();location.hash = a.getAttribute('href')}))
+    // initial
+    showPage(location.hash)
+
+    /*********************
+     * Local storage keys & defaults
+     *********************/
+    const DB_KEY = 'tg_classes_db_v1'
+    const defaultDB = {courses:[
+      {id:1,title:'Complete UGC NET Commerce — Paper 2',price:999,desc:'Recorded videos + PDFs + doubt group',thumb:'',created:Date.now()},
+      {id:2,title:'UGC NET Paper 1 Crash Course',price:499,desc:'Short tricks and MCQs',thumb:'',created:Date.now()}
+    ],materials:[]}
+
+    function loadDB(){
+      try{
+        const raw = localStorage.getItem(DB_KEY)
+        if(!raw){localStorage.setItem(DB_KEY, JSON.stringify(defaultDB)); return JSON.parse(JSON.stringify(defaultDB))}
+        return JSON.parse(raw)
+      }catch(e){console.error(e);localStorage.removeItem(DB_KEY);localStorage.setItem(DB_KEY, JSON.stringify(defaultDB));return JSON.parse(JSON.stringify(defaultDB))}
+    }
+    function saveDB(db){ localStorage.setItem(DB_KEY, JSON.stringify(db)) }
+    let DB = loadDB()
+
+    /*********************
+     * Render functions
+     *********************/
+    function renderCourses(){
+      const grid = document.getElementById('coursesGrid')
+      grid.innerHTML=''
+      DB.courses.slice().reverse().forEach(c=>{
+        const el = document.createElement('div'); el.className='course'
+        el.innerHTML = `
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:72px;height:56px;background:#f3f8ff;border-radius:8px;display:flex;align-items:center;justify-content:center">${c.thumb?`<img src="${c.thumb}" alt="thumb" style="width:100%;height:100%;object-fit:cover;border-radius:6px">`:`<strong style="color:var(--blue)">${c.title.split(' ').slice(0,2).map(w=>w[0]?w[0].toUpperCase():'').join('')}</strong>`}</div>
+            <div style="flex:1">
+              <h3>${c.title}</h3>
+              <div class="muted small">${c.desc}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="pill">₹${c.price}</div>
+              <div style="margin-top:8px"><button class="small" onclick="enrollCourse(${c.id})">Enroll</button></div>
+            </div>
+          </div>
+        `
+        grid.appendChild(el)
+      })
+
+      // popular
+      const pop = document.getElementById('popularCourses'); pop.innerHTML=''
+      DB.courses.slice(0,3).forEach(c=>{const d=document.createElement('div');d.className='course';d.innerHTML=`<h3>${c.title}</h3><div class="muted small">${c.desc}</div><div style="margin-top:8px"><span class="pill">₹${c.price}</span></div>`;pop.appendChild(d)})
+    }
+
+    function renderMaterials(){
+      const grid = document.getElementById('materialsGrid'); grid.innerHTML=''
+      DB.materials.slice().reverse().forEach(m=>{
+        const el = document.createElement('div'); el.className='course'
+        el.innerHTML = `
+          <div>
+            <h3>${m.title}</h3>
+            <div class="muted small">Uploaded: ${new Date(m.created).toLocaleString()}</div>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <a href="${m.data}" download="${m.title}.pdf"><button>Download PDF</button></a>
+              <button class="btn-ghost" onclick="previewPdf('${m.id}')">Preview</button>
+            </div>
+          </div>
+        `
+        grid.appendChild(el)
+      })
+    }
+
+    renderCourses(); renderMaterials();
+
+    /*********************
+     * Actions
+     *********************/
+    function enrollCourse(id){
+      const c = DB.courses.find(x=>x.id===id)
+      if(!c) return alert('Course not found')
+      // demo modal -> for real: integrate payment gateway
+      alert('Thanks for your interest in "'+c.title+'". For enrollment contact on WhatsApp or use contact form.')
+      location.hash = '#contact'
+    }
+
+    // contact
+    document.getElementById('whatsappBtn').addEventListener('click',()=>{
+      const phone = '91' + '7206560451'
+      const text = encodeURIComponent('Hi Tarun, I want details about TG Classes courses.')
+      window.open('https://wa.me/'+phone+'?text='+text,'_blank')
+    })
+    document.getElementById('sendContact').addEventListener('click',()=>{
+      const name = document.getElementById('contactName').value.trim()
+      const email = document.getElementById('contactEmail').value.trim()
+      const msg = document.getElementById('contactMsg').value.trim()
+      if(!name||!email||!msg) return alert('Please fill all fields')
+      // For demo, open mailto. In production, send via server.
+      const subject = encodeURIComponent('TG Classes Enquiry from '+name)
+      const body = encodeURIComponent(msg + '\n\nContact Email: ' + email)
+      window.location.href = 'mailto:tarun@example.com?subject='+subject+'&body='+body
+    })
+
+    // admin
+    const ADMIN_PW = 'tgadmin123' // change this before sharing publicly
+    document.getElementById('unlockAdmin').addEventListener('click',()=>{
+      const pw = document.getElementById('adminPassword').value
+      if(pw===ADMIN_PW){
+        document.getElementById('adminControls').style.display='block'
+        document.getElementById('adminAuth').style.display='none'
+        alert('Admin unlocked — use the controls to add content. Data is stored in this browser.')
+      }else alert('Wrong password')
+    })
+
+    document.getElementById('addCourse').addEventListener('click',()=>{
+      const title = document.getElementById('courseTitle').value.trim()
+      const price = Number(document.getElementById('coursePrice').value.trim()||0)
+      const desc = document.getElementById('courseDesc').value.trim()
+      const thumb = document.getElementById('courseThumb').value.trim()
+      if(!title||!desc) return alert('Title and description required')
+      const id = Date.now()
+      DB.courses.push({id,title,price,desc,thumb,created:Date.now()})
+      saveDB(DB); renderCourses(); alert('Course added')
+      document.getElementById('courseTitle').value='';document.getElementById('courseDesc').value='';document.getElementById('coursePrice').value='';document.getElementById('courseThumb').value=''
+    })
+
+    // upload PDF -> read as DataURL and store
+    document.getElementById('uploadPdf').addEventListener('click',()=>{
+      const f = document.getElementById('pdfFile').files[0]
+      const title = document.getElementById('pdfTitle').value.trim()
+      if(!f||!title) return alert('Select a PDF and give it a title')
+      const reader = new FileReader()
+      reader.onload = e => {
+        const data = e.target.result
+        const id = Date.now().toString()
+        DB.materials.push({id,title,data,created:Date.now()})
+        saveDB(DB); renderMaterials(); alert('PDF uploaded and available to students')
+        document.getElementById('pdfFile').value='';document.getElementById('pdfTitle').value=''
+      }
+      reader.readAsDataURL(f)
+    })
+
+    // preview
+    window.previewPdf = function(id){
+      const m = DB.materials.find(x=>x.id==id)
+      if(!m) return alert('Material not found')
+      const w = window.open('')
+      w.document.write(`<iframe src="${m.data}" style="width:100vw;height:100vh" frameborder="0"></iframe>`)
+    }
+
+    // admin utilities
+    document.getElementById('clearData').addEventListener('click',()=>{
+      if(confirm('Clear all TG Classes data from this browser? This cannot be undone.')){localStorage.removeItem(DB_KEY);DB = loadDB();renderCourses();renderMaterials();alert('Data cleared')}
+    })
+    document.getElementById('clearMaterials').addEventListener('click',()=>{
+      if(confirm('Clear only materials?')){DB.materials=[];saveDB(DB);renderMaterials();alert('Materials cleared')}
+    })
+
+    // export
+    document.getElementById('exportData').addEventListener('click',()=>{
+      const blob = new Blob([JSON.stringify(DB, null, 2)],{type:'application/json'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a'); a.href=url; a.download='tg-classes-export.json'; a.click(); URL.revokeObjectURL(url)
+    })
+    document.getElementById('importBtn').addEventListener('click',()=>{
+      const f = document.getElementById('importFile').files[0]
+      if(!f) return alert('Choose a JSON file exported from the admin panel')
+      const r = new FileReader(); r.onload = e => {
+        try{ const data = JSON.parse(e.target.result); DB = data; saveDB(DB); renderCourses(); renderMaterials(); alert('Import successful') }catch(err){alert('Invalid file')}
+      }; r.readAsText(f)
+    })
+
+    document.getElementById('refreshData').addEventListener('click',()=>{renderCourses();renderMaterials();alert('Preview refreshed')})
+
+    // small UX hooks
+    document.getElementById('enrollDemo').addEventListener('click',()=>{alert('This is a demo enroll. Use admin to add payment integration (Razorpay/Stripe) or contact form.'); location.hash='#contact'})
+
+    // set sample about photo if none
+    document.getElementById('aboutPhoto').innerText = 'TG'
+
+    // initial hash handling on load
+    window.addEventListener('load',()=>{
+      renderCourses(); renderMaterials();
+    })
+  </script>
+</body>
+</html>
