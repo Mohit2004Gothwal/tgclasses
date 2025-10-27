@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TG Classes | Upload Materials</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header>
+    <h2>📤 Upload Study Materials</h2>
+    <a href="view-material.html" class="btn-ghost">➡ Go to View Materials</a>
+  </header>
+
+  <main class="container">
+    <div class="upload-card">
+      <input type="text" id="pdfTitle" placeholder="Enter material title">
+      <input type="text" id="pdfLink" placeholder="Paste PDF or Google Drive link (optional)">
+      <p>or</p>
+      <input type="file" id="pdfFile" accept="application/pdf">
+      <button onclick="addMaterial()">Upload / Add Material</button>
+    </div>
+
+    <div id="materialsGrid" class="grid"></div>
+  </main>
+
+  <script src="assets/materials.js"></script>
+</body>
+</html>

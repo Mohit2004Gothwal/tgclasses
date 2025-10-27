@@ -19,20 +19,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TG Classes — UGC NET & CUET Prep</title>
+  <title>TG Classes — UGC NET & CUET Prep </title>
   <meta name="description" content="TG Classes by Tarun Gothwal — UGC NET JRF Commerce coaching, study materials, PDFs and courses." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--blue:#0b74ff;--dark:#0f1724;--muted:#6b7280;--glass:rgba(255,255,255,0.06)}
+    :root{--blue:#388adc;--dark:#0f1724;--muted:#1559e0;--glass:rgba(255,255,255,0.06)}
     *{box-sizing:border-box}
-    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; color:#111827; background:linear-gradient(180deg,#f8fafc 0%,#ffffff 100%)}
-    header{background:#fff;border-bottom:1px solid #e6edf6;position:sticky;top:0;z-index:40}
+    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; color:#111827; background:linear-gradient(180deg,#d8dadb 0%,#e2e0e0 100%)}
+    header{background:#b2c91c;border-bottom:1px solid #1e68ce;position:sticky;top:0;z-index:40}
     .container{max-width:1100px;margin:0 auto;padding:20px}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:52px;height:52px;border-radius:8px;background:linear-gradient(135deg,var(--blue),#2fb6ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;box-shadow:0 6px 18px rgba(11,116,255,0.18)}
+    .logo{width:52px;height:52px;border-radius:8px;background:linear-gradient(135deg,var(--blue),#2fb6ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;box-shadow:0 6px 18px rgba(86, 182, 202, 0.18)}
     nav a{margin:0 8px;color:var(--dark);text-decoration:none;font-weight:600}
-    .cta{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none}
+    .cta{background:var(--blue);color:#d9d2d2;padding:8px 14px;border-radius:8px;text-decoration:none}
 
     /* Hero */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
@@ -47,7 +47,7 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f0f7ff;color:var(--blue);font-weight:600;font-size:13px}
     .muted{color:var(--muted);font-size:14px}
 
-    footer{padding:28px 0;color:var(--muted);} 
+    footer{padding:28px 0;color:rgb(72, 0, 255);} 
     .columns{display:flex;gap:24px;flex-wrap:wrap}
 
     /* Pages */
@@ -58,7 +58,7 @@
     .admin-panel{background:linear-gradient(180deg,#0b74ff11,#0b74ff08);border:1px dashed #cfe6ff;padding:14px;border-radius:10px}
     input,textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid #e6edf6;margin-top:8px}
     button{background:var(--blue);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
-    .btn-ghost{background:transparent;border:1px solid #e6edf6;color:var(--dark)}
+    .btn-ghost{background:var(--blue);border-radius:5px;border:0.8px solid #236ac8;color:var(--dark)}
     .small{font-size:13px}
     .flex{display:flex;gap:12px}
 
@@ -72,18 +72,20 @@
       <div class="brand">
         <img src="image.png" alt="TG" id="aboutPhoto" style="width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#00b2ff);display:block">
         <div>
-          <div style="font-weight:700">TG Classes</div>
-          <div style="font-size:12px;color:var(--muted)">UGC NET • CUET • Commerce</div>
+          <div style="font-size:19px;"><b>TG Classes</b></div>
+          <div style="font-size:17px;color:black">UGC NET • CUET • Commerce</div>
         </div>
       </div>
 
       <nav>
-        <a href="#home" data-link>Home</a>
-        <a href="#courses" data-link>Courses</a>
-        <a href="#materials" data-link>Materials</a>
-        <a href="#about" data-link>About</a>
-        <a href="#contact" data-link>Contact</a>
-        <a href="#admin" class="cta" id="adminBtn">Admin</a>
+          <a class="cta" href="#home" data-link>Home</a>
+          <a class="cta" href="#courses" data-link>Courses</a>
+          <a  class="cta" href="#materials" data-link>Materials</a>
+          <!-- <a  href="#viewMaterials" data-link>View Materials</a> -->
+          <a class="cta" href="#about" data-link>About</a>
+        <a class="cta" href="#contact"  data-link>Contact</a>
+        <!-- <br/> -->
+        <a class="cta" href="#admin"  id="adminBtn">Admin</a>
       </nav>
     </div>
   </header>
@@ -97,20 +99,22 @@
           <p>High-quality courses, concise PDFs, and guided practice for Commerce aspirants. Join batches, download study material, and track progress.</p>
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px">
             <a class="cta" href="#courses">View Courses</a>
-            <a class="btn-ghost" href="#materials">Free PDFs</a>
-            <a class="btn-ghost" href="https://youtube.com/" target="_blank">YouTube Channel</a>
+            <a class="cta" href="#materials"> PDF</a>
+            <a class="cta" href="https://www.youtube.com/@Jrf_commerce" target="_blank">TG YouTube </a>
+            <a class="cta" href="https://t.me/commercebyduinfo" target="_blank">TG Telegram </a>
+            
           </div>
 
           <div class="columns">
             <div style="min-width:220px" class="card">
               <div style="font-size:13px;color:var(--muted)">Upcoming Batch</div>
               <div style="font-weight:700;margin-top:6px">UGC NET Commerce — Dec 2025</div>
-              <div style="margin-top:8px;color:var(--muted)">Limited seats. Start Date: <strong>Nov 10, 2025</strong></div>
+              <div style="margin-top:8px;color:var(--muted)">Limited seats. Start Date: <strong>Jan 26, 2026</strong></div>
             </div>
 
             <div style="min-width:220px" class="card">
-              <div style="font-size:13px;color:var(--muted)">Free Resource</div>
-              <div style="font-weight:700;margin-top:6px">Top 100 MCQs — Paper 1</div>
+              <div style="font-size:13px;color:var(--muted)"> PAID Resource</div>
+              <div style="font-weight:700;margin-top:6px">Top 4000 MCQs PDF — Paper 1 RS 699</div>
               <div style="margin-top:8px;color:var(--muted)">Downloadable PDF and quick revision notes.</div>
             </div>
           </div>
@@ -120,11 +124,11 @@
           <div style="text-align:center;padding:10px 6px">
             <div style="font-size:13px;color:var(--muted)">Featured Course</div>
             <h3 style="margin:8px 0">Complete UGC NET Commerce — Paper 2</h3>
-            <div class="pill">₹999 (Early Bird)</div>
+            <div class="pill">₹9999 (50% off) --> ₹4999</div>
             <p class="muted small" style="margin-top:10px">Includes recorded videos, 10 PDFs, and access to the doubt group.</p>
             <div style="margin-top:14px;display:flex;gap:8px;justify-content:center">
-              <button id="enrollDemo">Enroll (Demo)</button>
-              <a class="btn-ghost" href="#contact">Contact</a>
+              <button id="enrollDemo">Enroll </button>
+              <a class="cta" href="#contact">Contact</a>
             </div>
           </div>
         </aside>
@@ -141,25 +145,145 @@
       <div id="coursesGrid" class="grid" style="margin-top:12px"></div>
     </section>
 
-    <!-- MATERIALS -->
-    <section id="materials" class="page">
-      <h2>Study Materials & PDFs</h2>
-      <p class="muted">Download free and premium PDFs uploaded by TG Classes.</p>
-      <div id="materialsGrid" class="grid" style="margin-top:12px"></div>
-    </section>
+     <!-- MATERIALS -->
+<section id="materials" class="page">
+  <h2>Study Materials & PDFs</h2>
+  <p class="muted">Download free and premium PDFs uploaded by TG Classes.</p>
+
+  <!-- View Materials -->
+   <!-- <section id="ViewMaterials" class="page">
+    <h2>Study Materials & PDFs</h2>
+    <p class="muted">Browse and download PDFs uploaded by TG Classes.</p>
+    <div id="materialsGrid" class="grid" style="margin-top:12px;"></div> -->
+
+   
+
+  <!-- Upload Form -->
+  <div id="uploadMaterial" style="margin: 16px 0; padding: 12px; background: #f8f9fa; border-radius: 10px;">
+    <h3>Add New Material</h3>
+    <input type="text" id="pdfTitle" placeholder="Enter material title" style="width:100%; padding:8px; margin-top:6px; border:1px solid #ccc; border-radius:6px;">
+    <input type="text" id="pdfLink" placeholder="Paste PDF or Google Drive link (optional)" style="width:100%; padding:8px; margin-top:6px; border:1px solid #ccc; border-radius:6px;">
+    <p style="margin:6px 0; text-align:center;">or</p>
+    <input type="file" id="pdfFile" accept="application/pdf" style="margin-top:4px;">
+    <button onclick="addMaterial()" style="display:block; margin-top:10px; padding:8px 16px; background:#007bff; color:white; border:none; border-radius:6px; cursor:pointer;">Upload / Add Material</button>
+  </div> 
+
+  <!-- Display Grid -->
+ <div id="materialsGrid" class="grid" style="margin-top:12px;"></div>
+</section>
+
+<script>
+//   Load saved materials from localStorage
+  let materials = JSON.parse(localStorage.getItem("tgMaterials")) || [];
+
+  function renderMaterials() {
+    const grid = document.getElementById("materialsGrid");
+    grid.innerHTML = "";
+
+    if (materials.length === 0) {
+      grid.innerHTML = "<p>No study materials yet. Add one above!</p>";
+      return;
+    }
+
+    materials.forEach((mat, i) => {
+      const card = document.createElement("div");
+      card.className = "material-card";
+      card.style.cssText = "padding:16px; background:#fff; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);";
+
+      card.innerHTML = `
+        <h4>${mat.title}</h4>
+        <a href="${mat.link}" target="_blank" style="color:#007bff; text-decoration:none;">📄 View / Download</a>
+        <br>
+        <button onclick="deleteMaterial(${i})" style="margin-top:8px; padding:4px 10px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer;">Delete</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function addMaterial() {
+    const title = document.getElementById("pdfTitle").value.trim();
+    const linkInput = document.getElementById("pdfLink").value.trim();
+    const fileInput = document.getElementById("pdfFile").files[0];
+
+    if (!title) {
+      alert("Please enter a material title");
+      return;
+    }
+
+    // Case 1: If user provides link
+    if (linkInput) {
+      materials.push({ title, link: linkInput });
+      saveAndRender();
+      return;
+    }
+
+    // Case 2: If user uploads file
+    if (fileInput) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        materials.push({ title, link: e.target.result });
+        saveAndRender();
+      };
+      reader.readAsDataURL(fileInput);
+    } else {
+      alert("Please provide a link or upload a file");
+    }
+  }
+
+  function deleteMaterial(index) {
+    if (confirm("Delete this material?")) {
+      materials.splice(index, 1);
+      saveAndRender();
+    }
+  }
+
+  function saveAndRender() {
+    localStorage.setItem("tgMaterials", JSON.stringify(materials));
+    document.getElementById("pdfTitle").value = "";
+    document.getElementById("pdfLink").value = "";
+    document.getElementById("pdfFile").value = "";
+    renderMaterials();
+  }
+
+  // Initial render
+  renderMaterials();
+</script> 
+
 
     <!-- ABOUT -->
-    <section id="about" class="page">
-      <h2>About TG Classes</h2>
-      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-        <img src="image2.png" alt="Tarun" id="aboutPhoto" style="width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#00b2ff);display:block">
-        <div>
-          <h3>Tarun Gothwal</h3>
-          <p class="muted">UGC NET JRF Commerce aspirant coach, focused on making complex commerce topics easy and exam-friendly.</p>
-          <p class="muted small">Services: Live classes, Recorded courses, PDFs, Doubt clearing sessions, Mock tests.</p>
-        </div>
+   <!-- ABOUT -->
+<section id="about" class="page">
+  <h2>About TG Classes</h2>
+  <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <img src="image2.png" alt="Tarun" id="aboutPhoto" style="width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#00b2ff);display:block">
+    <div>
+      <h3>Tarun Gothwal</h3>
+      <p class="muted small">
+        UGC NET JRF Commerce educator and aspirant coach, focused on making complex commerce topics easy, structured, and exam-friendly.
+      </p>
+      <p class="muted small">
+        Services offered: Live classes, Recorded courses, PDFs, Doubt clearing sessions, and Mock tests.
+      </p>
+      <p class="muted small">
+          UGC NET Qualified <br/>
+          BCOM (Ramjas College) <br/>
+          MCOM (Delhi school of Economics )<br/>
+          AIR 2 in COMMERCE WIZARD conducted by Institute of Chartered Accountants of India <br/>
+          Founder DU INFO
+      </p>
+      <!-- Course Price
+      <div style="margin-top:12px; padding:10px 14px; background:#f0f9ff; border:1px solid #b3e0ff; border-radius:8px; display:inline-block;">
+        <strong style="color:#007bff; font-size:1.1em;">Complete Course Price:</strong>
+        <span style="color:#222; font-weight:bold;">₹9,999</span>
+      </div> -->
+
+      <!-- CTA Button -->
+      <div style="margin-top:10px;">
+        <a href="#courses" style="background:#007bff;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;">View Courses</a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section id="contact" class="page">
@@ -184,7 +308,7 @@
           <div style="font-weight:700">Quick Links</div>
           <div style="margin-top:8px;color:var(--muted)">
             Phone: <strong>7206560451</strong><br>
-            Email: <strong>gothwaltarun@gmail.com</strong><br>
+            Email: <strong>tgclasses0@gmail.com</strong><br>
             YouTube: <a href="https://www.youtube.com/@Jrf_commerce" target="_blank">TG Classes</a>
           </div>
         </div>
@@ -208,7 +332,7 @@
           <div id="adminControls" style="display:none;margin-top:12px">
             <div style="font-weight:700">Add Course</div>
             <input id="courseTitle" placeholder="Course title (e.g. UGC NET Commerce)" />
-            <input id="coursePrice" placeholder="Price (e.g. 999)" />
+            <input id="coursePrice" placeholder="Price (e.g. 10000)" />
             <textarea id="courseDesc" placeholder="Short description"></textarea>
             <input id="courseThumb" placeholder="Thumbnail image URL (optional)" />
             <div style="display:flex;gap:8px;margin-top:8px">
@@ -239,9 +363,14 @@
 
     <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-        <div class="muted">© TG Classes — Built with TG GROUP/div>
-        <div class="muted">Founder : Tarun Gothwal</div>
+        <div class="muted">© TG Classes — Built with TG GROUP</div>
+        <div class="muted">Founder : Mr. Tarun Gothwal</div>
+        <div class="muted">ChairPerson - Mr. Babulal</div>
         <div class="muted">Co-Founder — AANYA</div>
+        <div class="muted">Co-Founder — Dr. Lalita</div>
+        <div class="muted">Co-Founder — Mr. Nitesh Singh</div>
+        <!-- <div class="muted">Technical Team Lead — Mr. Mohit</div> -->
+        <!-- <div class="muted">Chief Marketing Officer — Coco</div> -->
         <div style="display:flex;gap:12px">
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -271,8 +400,8 @@
      *********************/
     const DB_KEY = 'tg_classes_db_v1'
     const defaultDB = {courses:[
-      {id:1,title:'Complete UGC NET Commerce — Paper 2',price:999,desc:'Recorded videos + PDFs + doubt group',thumb:'',created:Date.now()},
-      {id:2,title:'UGC NET Paper 1 Crash Course',price:499,desc:'Short tricks and MCQs',thumb:'',created:Date.now()}
+      {id:1,title:'Complete UGC NET Commerce — Paper 2',desc:'Recorded videos + PDFs + doubt group',thumb:'',created:Date.now()},
+      {id:2,title:'UGC NET Paper 1 Crash Course',desc:'Short tricks and MCQs',thumb:'',created:Date.now()}
     ],materials:[]}
 
     function loadDB(){
@@ -301,7 +430,8 @@
               <div class="muted small">${c.desc}</div>
             </div>
             <div style="text-align:right">
-              <div class="pill">₹${c.price}</div>
+               <div class="pill">₹${4999}</div>
+             
               <div style="margin-top:8px"><button class="small" onclick="enrollCourse(${c.id})">Enroll</button></div>
             </div>
           </div>
@@ -311,7 +441,7 @@
 
       // popular
       const pop = document.getElementById('popularCourses'); pop.innerHTML=''
-      DB.courses.slice(0,3).forEach(c=>{const d=document.createElement('div');d.className='course';d.innerHTML=`<h3>${c.title}</h3><div class="muted small">${c.desc}</div><div style="margin-top:8px"><span class="pill">₹${c.price}</span></div>`;pop.appendChild(d)})
+      DB.courses.slice(0,3).forEach(c=>{const d=document.createElement('div');d.className='course';d.innerHTML=`<h3>${c.title}</h3><div class="muted small">${c.desc}</div><div style="margin-top:8px"><span class="pill">₹4999</span></div>`;pop.appendChild(d)})
     }
 
     function renderMaterials(){
@@ -347,7 +477,7 @@
 
     // contact
     document.getElementById('whatsappBtn').addEventListener('click',()=>{
-      const phone = '91' + '7206560451'
+      const phone = '+91' + '7206560451'
       const text = encodeURIComponent('Hi Tarun, I want details about TG Classes courses.')
       window.open('https://wa.me/'+phone+'?text='+text,'_blank')
     })
@@ -359,7 +489,7 @@
       // For demo, open mailto. In production, send via server.
       const subject = encodeURIComponent('TG Classes Enquiry from '+name)
       const body = encodeURIComponent(msg + '\n\nContact Email: ' + email)
-      window.location.href = 'mailto:gothwaltarun17@gmail.com?subject='+subject+'&body='+body
+      window.location.href = 'mailto:tgclasses0@gmail.com?subject='+subject+'&body='+body
     })
 
     // admin
@@ -445,4 +575,4 @@
     })
   </script>
 </body>
-</html>
+</html> 
