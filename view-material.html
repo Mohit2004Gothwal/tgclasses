@@ -1,24 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TG Classes | View Materials</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    main.view-page {
+      display: flex;
+      gap: 24px;
+      padding: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .upload-section {
+      width: 100%;
+      text-align: center;
+      background: #f1f6ff;
+      border: 2px dashed #007bff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .upload-section input[type="file"] {
+      display: none;
+    }
+
+    .upload-section label {
+      background: #007bff;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .upload-section label:hover {
+      background: #0056d2;
+    }
+
+    .list {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      height: 500px;
+      overflow-y: auto;
+    }
+
+    .list h3 {
+      text-align: center;
+      margin-bottom: 12px;
+      color: #007bff;
+    }
+
+    .pdf-item {
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      background: #f9f9f9;
+    }
+
+    .pdf-item:hover {
+      background: #eaf2ff;
+    }
+
+    .viewer {
+      flex: 2;
+      min-width: 400px;
+      height: 500px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .viewer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .empty {
+      color: #888;
+    }
+  </style>
 </head>
 <body>
+  <!-- ======= HEADER ======= -->
   <header>
-    <h2>📚 TG Classes - Study Materials</h2>
-    <a href="materials.html" class="btn-ghost">⬅ Back to Upload</a>
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/image.png" alt="TG Logo" class="logo" />
+        <div>
+          <div class="brand-name">TG Classes</div>
+          <div class="tagline">UGC NET • CUET • Commerce</div>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="materials.html">Materials</a>
+        <a href="view-material.html" class="active">View Materials</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <!-- <a href="admin.html" class="cta">Admin</a> -->
+      </nav>
+    </div>
   </header>
 
+  <!-- ======= MAIN CONTENT ======= -->
   <main class="view-page">
-    <div id="materialsList" class="list"></div>
+    <div class="upload-section">
+      <h2>📄 Upload Study Materials (PDF)</h2>
+      <input type="file" id="pdfUpload" accept="application/pdf" />
+      <label for="pdfUpload">Choose PDF</label>
+    </div>
+
+    <div id="materialsList" class="list">
+      <h3>Uploaded Materials</h3>
+      <p class="empty">No materials uploaded yet.</p>
+    </div>
+
     <div id="pdfViewer" class="viewer">
-      <p>Select a PDF to view</p>
+      <p class="empty">Select a PDF to view</p>
     </div>
   </main>
 
-  <script src="assets/view-material.js"></script>
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <p>© 2025 TG Classes — Built by TG Group | Founder: <strong>Tarun Gothwal</strong></p>
+  </footer>
+
+  <!-- ======= JS ======= -->
+  <script>
+    const fileInput = document.getElementById("pdfUpload");
+    const materialsList = document.getElementById("materialsList");
+    const pdfViewer = document.getElementById("pdfViewer");
+
+    let pdfFiles = [];
+
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file && file.type === "application/pdf") {
+        const fileURL = URL.createObjectURL(file);
+        pdfFiles.push({ name: file.name, url: fileURL });
+        renderList();
+      } else {
+        alert("Please upload a valid PDF file.");
+      }
+    });
+
+    function renderList() {
+      materialsList.innerHTML = "<h3>Uploaded Materials</h3>";
+
+      pdfFiles.forEach((pdf, index) => {
+        const div = document.createElement("div");
+        div.className = "pdf-item";
+        div.textContent = pdf.name;
+        div.addEventListener("click", () => viewPDF(pdf.url));
+        materialsList.appendChild(div);
+      });
+
+      if (pdfFiles.length === 0) {
+        materialsList.innerHTML += `<p class="empty">No materials uploaded yet.</p>`;
+      }
+    }
+
+    function viewPDF(url) {
+      pdfViewer.innerHTML = `<iframe src="${url}"></iframe>`;
+    }
+  </script>
 </body>
 </html>

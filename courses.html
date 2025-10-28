@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Courses – TG Classes</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" type="image/png" href="assets/image.png" sizes="32x32" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .course-card h3 {
+      margin: 14px 0 6px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .course-card p {
+      font-size: 0.9rem;
+      color: #555;
+      min-height: 50px;
+    }
+
+    .price {
+      color: #007bff;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #0056d2;
+    }
+
+    header, footer {
+      background: linear-gradient(90deg, #007bff, #0056d2);
+      color: white;
+      text-align: center;
+      padding: 14px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/image.png" alt="TG Logo" class="logo">
+        <div>
+          <div class="brand-name">TG Classes</div>
+          <div class="tagline">UGC NET • CUET • Commerce</div>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="materials.html">Materials</a>
+        <a href="view-material.html">View Materials</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <!-- <a href="admin.html" class="cta">Admin</a> -->
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Explore Our Courses</h2>
+
+    <div class="courses-grid">
+      <!-- Course 1 -->
+      <div class="course-card">
+        <img src="assets/course1.jpg" alt="UGC NET Commerce">
+        <h3>UGC NET Commerce Full Course</h3>
+        <p>Comprehensive coverage of Paper 1 and Paper 2 (Commerce). Includes video lectures, notes, and tests.</p>
+        <div class="price">₹9,999</div>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card">
+        <img src="assets/course2.jpg" alt="CUET PG Course">
+        <h3>CUET PG Commerce Course</h3>
+        <p>Specially designed course for CUET PG aspirants with topic-wise tests and study materials.</p>
+        <div class="price">₹9,999</div>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card">
+        <img src="assets/course3.jpg" alt="Paper 1 Crash Course">
+        <h3>Paper 1 Crash Course</h3>
+        <p>Quick revision course focusing on key concepts and previous year questions for Paper 1.</p>
+        <div class="price">₹4,999</div>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 TG Classes | Built by TG Group | Founder: Tarun Gothwal</p>
+  </footer>
+</body>
+</html>

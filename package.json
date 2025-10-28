@@ -1,0 +1,28 @@
+{
+  "name": "tg-classes",
+  "version": "1.0.0",
+  "description": "TG Classes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohit2004Gothwal/tgclasses.git"
+  },
+  "author": "Mohit Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohit2004Gothwal/tgclasses/issues"
+  },
+  "homepage": "https://github.com/Mohit2004Gothwal/tgclasses#readme",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16"
+  }
+}

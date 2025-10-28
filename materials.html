@@ -3,27 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TG Classes | Upload Materials</title>
+  <title>TG Classes | Materials</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <!-- Header Section -->
   <header>
-    <h2>📤 Upload Study Materials</h2>
-    <a href="view-material.html" class="btn-ghost">➡ Go to View Materials</a>
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/image.png" alt="TG Logo" class="logo">
+        <div>
+          <div class="brand-name">TG Classes</div>
+          <div class="tagline">UGC NET • CUET • Commerce</div>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="view-material.html">View Materials</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
     <div class="upload-card">
-      <input type="text" id="pdfTitle" placeholder="Enter material title">
-      <input type="text" id="pdfLink" placeholder="Paste PDF or Google Drive link (optional)">
-      <p>or</p>
-      <input type="file" id="pdfFile" accept="application/pdf">
-      <button onclick="addMaterial()">Upload / Add Material</button>
+      <h2>Access Study Materials</h2>
+      <p>Click below to view or download all available study materials for your course.</p>
+      <button id="materialsLink">Open Google Classroom</button>
     </div>
-
-    <div id="materialsGrid" class="grid"></div>
   </main>
 
-  <script src="assets/materials.js"></script>
+  <script>
+    document.getElementById("materialsLink").addEventListener("click", () => {
+      window.open("https://classroom.google.com/c/ODE3MzM2NDM1NDk5?cjc=4qt2gk4f", "_blank");
+    });
+  </script>
 </body>
 </html>

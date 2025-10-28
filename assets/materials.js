@@ -1,67 +1,85 @@
-let materials = JSON.parse(localStorage.getItem("tgMaterials")) || [];
+// assets/materials.js
+import { db, storage } from "./firebase.js";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 
-function addMaterial() {
-  const title = document.getElementById("pdfTitle").value.trim();
-  const link = document.getElementById("pdfLink").value.trim();
-  const file = document.getElementById("pdfFile").files[0];
+const titleInput = document.getElementById("pdfTitle");
+const linkInput = document.getElementById("pdfLink");
+const fileInput = document.getElementById("pdfFile");
+const grid = document.getElementById("materialsGrid");
 
-  if (!title) return alert("Enter a material title");
+const materialsRef = collection(db, "materials");
 
-  if (link) {
-    materials.push({ title, link: formatLink(link) });
-    save();
-    alert("Material added successfully!");
-    return;
-  }
+async function addMaterial() {
+  const title = titleInput.value.trim();
+  const link = linkInput.value.trim();
+  const file = fileInput.files[0];
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      materials.push({ title, link: e.target.result });
-      save();
-      alert("PDF uploaded successfully!");
-    };
-    reader.readAsDataURL(file);
-  } else {
-    alert("Please upload a file or add a link");
+  if (!title) return alert("Please enter a title.");
+
+  let pdfURL = "";
+
+  try {
+    if (file) {
+      const fileRef = ref(storage, `materials/${Date.now()}_${file.name}`);
+      await uploadBytes(fileRef, file);
+      pdfURL = await getDownloadURL(fileRef);
+    } else if (link) {
+      pdfURL = link;
+    } else {
+      return alert("Please upload a PDF or paste a link.");
+    }
+
+    await addDoc(materialsRef, {
+      title,
+      pdfURL,
+      createdAt: new Date(),
+    });
+
+    alert("Material uploaded successfully!");
+    titleInput.value = "";
+    linkInput.value = "";
+    fileInput.value = "";
+    loadMaterials();
+  } catch (err) {
+    console.error(err);
+    alert("Error uploading material.");
   }
 }
 
-function formatLink(link) {
-  if (link.includes("drive.google.com")) {
-    if (link.includes("/view")) link = link.replace("/view", "/preview");
-  }
-  return link;
-}
+window.addMaterial = addMaterial;
 
-function save() {
-  localStorage.setItem("tgMaterials", JSON.stringify(materials));
-  renderMaterials();
-  document.getElementById("pdfTitle").value = "";
-  document.getElementById("pdfLink").value = "";
-  document.getElementById("pdfFile").value = "";
-}
+async function loadMaterials() {
+  grid.innerHTML = "<p>Loading...</p>";
+  const q = query(materialsRef, orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
 
-function renderMaterials() {
-  const grid = document.getElementById("materialsGrid");
   grid.innerHTML = "";
-  materials.forEach((m, i) => {
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <h4>${m.title}</h4>
-      <a href="${m.link}" target="_blank">View / Download</a>
-      <button onclick="deleteMaterial(${i})">Delete</button>
+      <h4>${data.title}</h4>
+      <a href="${data.pdfURL}" target="_blank" class="btn">View PDF</a>
     `;
     grid.appendChild(card);
   });
-}
 
-function deleteMaterial(i) {
-  if (confirm("Delete this material?")) {
-    materials.splice(i, 1);
-    save();
+  if (grid.innerHTML === "") {
+    grid.innerHTML = "<p>No materials yet.</p>";
   }
 }
 
-renderMaterials();
+loadMaterials();
+// assets/materials.js

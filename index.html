@@ -19,6 +19,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
   <title>TG Classes — UGC NET & CUET Prep </title>
   <meta name="description" content="TG Classes by Tarun Gothwal — UGC NET JRF Commerce coaching, study materials, PDFs and courses." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -80,9 +81,9 @@
       <nav>
           <a class="cta" href="#home" data-link>Home</a>
           <a class="cta" href="#courses" data-link>Courses</a>
-          <a  class="cta" href="#materials" data-link>Materials</a>
+          <a  class="cta" href="materials.html">Materials</a>
           <!-- <a  href="#viewMaterials" data-link>View Materials</a> -->
-          <a class="cta" href="#about" data-link>About</a>
+          <a class="cta" href="About.html">About</a>
         <a class="cta" href="#contact"  data-link>Contact</a>
         <!-- <br/> -->
         <a class="cta" href="#admin"  id="adminBtn">Admin</a>
@@ -102,23 +103,33 @@
             <a class="cta" href="#materials"> PDF</a>
             <a class="cta" href="https://www.youtube.com/@Jrf_commerce" target="_blank">TG YouTube </a>
             <a class="cta" href="https://t.me/commercebyduinfo" target="_blank">TG Telegram </a>
+            <a class="cta" href="https://www.instagram.com/tg_coachingclasses?igsh=dDg1azg5Z3llMDM2" target="_blank">TG INSTAGRAM </a>
             
           </div>
 
           <div class="columns">
             <div style="min-width:220px" class="card">
               <div style="font-size:13px;color:var(--muted)">Upcoming Batch</div>
-              <div style="font-weight:700;margin-top:6px">UGC NET Commerce — Dec 2025</div>
+              <div style="font-weight:700;margin-top:6px">UGC NET Commerce — June 2026</div>
               <div style="margin-top:8px;color:var(--muted)">Limited seats. Start Date: <strong>Jan 26, 2026</strong></div>
             </div>
 
-            <div style="min-width:220px" class="card">
-              <div style="font-size:13px;color:var(--muted)"> PAID Resource</div>
-              <div style="font-weight:700;margin-top:6px">Top 4000 MCQs PDF — Paper 1 RS 699</div>
-              <div style="margin-top:8px;color:var(--muted)">Downloadable PDF and quick revision notes.</div>
-            </div>
-          </div>
-        </div>
+           <div style="min-width:220px" class="card">
+  <div style="font-size:13px; color:var(--muted)">PAID Resource</div>
+  <div style="font-weight:700; margin-top:6px">Top 4000 MCQs PDF — Paper 1 RS 699</div>
+  <div style="margin-top:8px; color:var(--muted)">Downloadable PDF and quick revision notes.</div>
+
+  <div style="margin-top:12px;">
+    <button
+      class="small"
+      style="background:#007bff; color:#fff; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;"
+      onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfnR8Vz9WW3NH9XN1KeU4TlLSU9_Ol0PrkOZh7eOROuW0RfIQ/viewform', '_blank')"
+    >
+      Buy Now
+    </button>
+  </div>
+</div>
+
 
         <aside class="card">
           <div style="text-align:center;padding:10px 6px">
@@ -127,7 +138,14 @@
             <div class="pill">₹9999 (50% off) --> ₹4999</div>
             <p class="muted small" style="margin-top:10px">Includes recorded videos, 10 PDFs, and access to the doubt group.</p>
             <div style="margin-top:14px;display:flex;gap:8px;justify-content:center">
-              <button id="enrollDemo">Enroll </button>
+              <button id="enrollDemo">Enroll</button>
+
+<script>
+  document.getElementById("enrollDemo").addEventListener("click", () => {
+    window.open("https://docs.google.com/forms/d/e/1FAIpQLSdmpris4ioV3uA8PoODh3ALyznfUjQs3-V4px4QBaDXQhODkg/viewform?usp=header", "_blank");
+  });
+</script>
+
               <a class="cta" href="#contact">Contact</a>
             </div>
           </div>
@@ -398,7 +416,7 @@
     /*********************
      * Local storage keys & defaults
      *********************/
-    const DB_KEY = 'tg_classes_db_v1'
+    const DB_KEY = 'mongodb://localhost:27017'
     const defaultDB = {courses:[
       {id:1,title:'Complete UGC NET Commerce — Paper 2',desc:'Recorded videos + PDFs + doubt group',thumb:'',created:Date.now()},
       {id:2,title:'UGC NET Paper 1 Crash Course',desc:'Short tricks and MCQs',thumb:'',created:Date.now()}
@@ -432,7 +450,12 @@
             <div style="text-align:right">
                <div class="pill">₹${4999}</div>
              
-              <div style="margin-top:8px"><button class="small" onclick="enrollCourse(${c.id})">Enroll</button></div>
+              <div style="margin-top:8px">
+  <button class="small" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdmpris4ioV3uA8PoODh3ALyznfUjQs3-V4px4QBaDXQhODkg/viewform', '_blank')">
+    Enroll
+  </button>
+</div>
+
             </div>
           </div>
         `
@@ -493,7 +516,7 @@
     })
 
     // admin
-    const ADMIN_PW = 'tgadmin123' // change this before sharing publicly
+    const ADMIN_PW = 'tgadmin@123' // change this before sharing publicly
     document.getElementById('unlockAdmin').addEventListener('click',()=>{
       const pw = document.getElementById('adminPassword').value
       if(pw===ADMIN_PW){
@@ -576,3 +599,4 @@
   </script>
 </body>
 </html> 
+
